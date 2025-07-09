@@ -1,12 +1,1 @@
-{
-  "name": "taptix-otp-login",
-  "version": "1.0.0",
-  "description": "OTP login system for TAPTIX",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
-  },
-  "dependencies": {
-    "express": "^4.18.2"
-  }
-}
+{ "name": "taptix-otp-system", "version": "1.0.0", "main": "server.js", "scripts": { "start": "node server.js" } }
