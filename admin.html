@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin OTP Viewer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h2>OTP Requests (Admin View)</h2>
+  <table border="1">
+    <thead>
+      <tr><th>Phone</th><th>OTP</th><th>Expires In (seconds)</th></tr>
+    </thead>
+    <tbody id="otp-table-body"></tbody>
+  </table>
+
+  <script>
+    async function loadOtps() {
+      const res = await fetch('/admin/otps');
+      const otps = await res.json();
+      const body = document.getElementById('otp-table-body');
+      body.innerHTML = '';
+      const now = Date.now();
+      otps.forEach(({ phone, otp, expires }) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `<td>${phone}</td><td>${otp}</td><td>${Math.floor((expires - now) / 1000)}</td>`;
+        body.appendChild(row);
+      });
+    }
+
+    setInterval(loadOtps, 3000);
+    loadOtps();
+  </script>
+</body>
+</html>
